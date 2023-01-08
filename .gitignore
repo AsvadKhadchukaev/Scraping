@@ -1,2 +1,4 @@
 __pycache__/
 scraper.py.patch
+Pipfile
+.ipynb_checkpoints/

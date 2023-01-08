@@ -4,6 +4,7 @@ import pandas as pd
 import sqlite3 as sql
 
 
+
 def find_links(parser: KinoPoisk) -> list[str]:
 
     all_links = []
@@ -34,7 +35,6 @@ def find_all_film_data(parser: KinoPoisk, all_links: list) -> list[dict]:
         film_data = parser.film_characteristics()
         all_film_data.append(film_data)
         logger.info(f'Got data from the {link_number+1} link film')
-
     return all_film_data
 
 
@@ -46,16 +46,13 @@ def create_db_table():
     conn.commit()
     conn.close()
 
-
 def main():
-
     with KinoPoisk() as parser:
-
         all_links = find_links(parser)
         all_film_data = find_all_film_data(parser, all_links)
         df = pd.DataFrame(all_film_data)
         df.to_csv('KinoPoisk.csv', index=False)
-    create_db_table()
+    #create_db_table()
 
 
 if __name__ == '__main__':

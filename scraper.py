@@ -114,10 +114,10 @@ class KinoPoisk(webdriver.Chrome):
         characteristics = self.find_elements(
             By.CLASS_NAME, class_name_characteristics)
 
-        film_data = {ch[0]: ch[1:2] for ch in (
+        film_data = {''.join(ch[0]): ''.join(ch[1:2]) for ch in (
             characteristic.text.split("\n") for characteristic in characteristics)}
-        film_data['Название фильма'] = film_name.split("\n")
-        film_data['Актеры'] = actors.split("\n")
-        film_data['Оценка фильма'] = score.split("\n")
+        film_data['Название фильма'] = ''.join(film_name.split("\n"))
+        film_data['Актеры'] = ''.join(actors.split("\n"))
+        film_data['Оценка фильма'] = ''.join(score.split("\n"))
 
         return film_data
